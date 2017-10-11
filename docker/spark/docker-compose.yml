@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  spark-master:
+    build: ./spark-container-build
+    ports:
+      - "8080:8080"
+      - "6066:6066"
+    networks:
+      - spark-network
+#  spark-slave1:
+#    build: spark-container-build
+#    ports:
+#      - "8080:8080"
+#    networks:
+#      - spark-network
+
+networks:
+  spark-network:
