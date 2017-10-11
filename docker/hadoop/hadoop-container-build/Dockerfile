@@ -23,4 +23,6 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 #RUN gpg --verify hadoop-2.8.1/hadoop-2.8.1.tar.gz.asc hadoop-2.8.1.tar.gz
 #RUN tar xvz -C /usr/local/share/hadoop
 
+#instead of installing haddop, copy the local file into contianer, make sure your hadoop binary is under ./../hadoop-binary
+ADD ./../hadoop-binary/hadoop-2.8.1 /usr/local/share/hadoop/hadoop-2.8.1
 #CMD cd /usr/local/share/hadoop
