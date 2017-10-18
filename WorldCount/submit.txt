@@ -1,1 +1,1 @@
-bin/spark-submit --class com.geekcap.javaworld.sparkexample.WordCount --deploy-mode cluster --master spark://spark-master:7077 spark-app/spark-wordcount-1.0-SNAPSHOT.jar /spark/spark-2.2.0-bin-hadoop2.7/README.md
+bin/spark-submit --class com.geekcap.javaworld.sparkexample.WordCount --deploy-mode cluster --master spark://spark-master:7077 spark-app/spark-wordcount-1.0-SNAPSHOT.jar /spark/spark-2.2.0-bin-hadoop2.7/README.md 20
