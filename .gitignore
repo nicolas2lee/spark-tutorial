@@ -1,3 +1,5 @@
 .DS_Store
 
-docker/hadoop/hadoop-binary/**
+.idea
+
+docker/hadoop/hadoop-container-buildh/hadoop-binary/**

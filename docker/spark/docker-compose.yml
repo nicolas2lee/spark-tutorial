@@ -6,8 +6,10 @@ services:
     build: ./spark-container-build
     ports:
       - "8080:8080" #monitoring nodes and jobs
-      - "6066:6066"
-      - "7077:7077"
+      - "6066:6066" #REST API
+      - "7077:7077" #master node communication port
+      - "4040:4040"
+      - "18080:18080"
     networks:
       - spark-network
     command:
@@ -17,6 +19,8 @@ services:
     ports:
       - "8081:8081"
       - "6067:6066"
+      - "4041:4040"
+      - "18081:18080"
     networks:
       - spark-network
     command:
@@ -26,6 +30,9 @@ services:
     ports:
       - "8082:8081"
       - "6068:6066"
+      - "4042:4040"
+      - "4052:4042"
+      - "18082:18080"
     networks:
       - spark-network
     command:

@@ -22,7 +22,7 @@ public class WordCount {
         JavaSparkContext sc = new JavaSparkContext(conf);
 
         // Load the input data, which is a text file read from the command line
-        JavaRDD<String> input = sc.textFile( filename, 20 );
+        JavaRDD<String> input = sc.textFile( filename );
 
         // Java 8 with lambdas: split the input string into words
         JavaRDD<String> words = input.flatMap( s -> Arrays.asList( s.split( " " ) ).iterator() );

@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  jenkins:
+    hostname: jenkins
+    image:  jenkinsci/jenkins
+    ports:
+      - "8090:8080" 
+    networks:
+      - devops-network
+#    command:
+#      /spark/spark-2.2.0-bin-hadoop2.7/bin/spark-class org.apache.spark.deploy.master.Master -h spark-master
+networks:
+  devops-network:

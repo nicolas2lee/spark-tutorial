@@ -24,6 +24,13 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 #RUN tar xvz -C /usr/local/share/hadoop
 
 #instead of installing haddop, copy the local file into contianer, make sure your hadoop binary is under ./../hadoop-binary
-ADD ./hadoop-binary/hadoop-2.8.1 /usr/local/share/hadoop/hadoop-2.8.1
-#CMD ./usr/local/share/hadoop/hadoop-2.8.1/bin/namenode -format hadoop-cluster
-CMD ./usr/local/share/hadoop/hadoop-2.8.1/bin/hadoop
+ADD ./hadoop-binary/hadoop-2.8.1 /hadoop/hadoop-2.8.1
+#copy custom config file
+RUN rm /hadoop/hadoop-2.8.1/etc/hadoop/core-site.xml /hadoop/hadoop-2.8.1/etc/hadoop/hdfs-site.xml /hadoop/hadoop-2.8.1/etc/hadoop/slaves
+ADD ./hadoop-conf /hadoop/hadoop-2.8.1/etc/hadoop
+ADD ./run.sh /hadoop/hadoop-2.8.1/run.sh
+RUN chmod 777 /hadoop/hadoop-2.8.1/run.sh
+RUN mkdir /hadoop/hadoop-2.8.1/datanode
+RUN mkdir /hadoop/hadoop-2.8.1/namenode
+
+CMD ./hadoop/hadoop-2.8.1/bin/hadoop

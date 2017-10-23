@@ -2,12 +2,52 @@ version: '3'
 
 services:
   hadoop-namenode:
+    hostname: hadoop-namenode
     build: ./hadoop-container-build
     ports:
-      - "8080:8080"
+      - "9000:9000"
+      - "9080:8080"
+      - "9870:9870"
+      - "50071:50070"
     networks:
-      - hadoop-network
-  
+#      - hadoop-network
+      - spark_spark-network
+    command:
+      ./hadoop/hadoop-2.8.1/run.sh
+#     ./hadoop/hadoop-2.8.1/bin/hdfs namenode -format hadoop-cluster -Y && ./hadoop/hadoop-2.8.1/bin/hdfs namenode
+  hadoop-datanode_1:
+    hostname: hadoop-datanode1
+    build: ./hadoop-container-build
+    ports:
+      - "9081:8080"
+    networks:
+#      - hadoop-network
+      - spark_spark-network
+    command:
+     ./hadoop/hadoop-2.8.1/bin/hdfs datanode
+
+  hadoop-datanode_2:
+    hostname: hadoop-datanode2
+    build: ./hadoop-container-build
+    ports:
+      - "9082:8080"
+    networks:
+#      - hadoop-network
+      - spark_spark-network
+    command:
+     ./hadoop/hadoop-2.8.1/bin/hdfs datanode
+
+  hadoop-datanode_3:
+    hostname: hadoop-datanode3
+    build: ./hadoop-container-build
+    ports:
+      - "9083:8080"
+    networks:
+#      - hadoop-network
+      - spark_spark-network
+    command:
+     ./hadoop/hadoop-2.8.1/bin/hdfs datanode
+
 #  hadoop-slave:
 #    build: ./hadoop-container-build
 #    ports:
@@ -16,4 +56,7 @@ services:
 #      - hadoop-network
 
 networks:
-  hadoop-network:
+  spark_spark-network:
+    external: true
+
+#  hadoop-network:

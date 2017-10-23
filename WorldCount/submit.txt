@@ -1,1 +1,8 @@
-bin/spark-submit --class com.geekcap.javaworld.sparkexample.WordCount --deploy-mode cluster --master spark://spark-master:7077 spark-app/spark-wordcount-1.0-SNAPSHOT.jar /spark/spark-2.2.0-bin-hadoop2.7/README.md 20
+bin/spark-submit --class com.geekcap.javaworld.sparkexample.WordCount \
+--deploy-mode client \
+--master spark://spark-master:7077 \
+--conf spark.driver.cores=4 \
+--conf spark.eventLog.enabled=true \
+--total-executor-cores 10 \
+spark-app/spark-wordcount-1.0-SNAPSHOT.jar hdfs://hadoop-namenode:9000/LICENSE.txt \
+8
