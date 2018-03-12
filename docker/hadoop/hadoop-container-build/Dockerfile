@@ -30,6 +30,7 @@ RUN rm /hadoop/hadoop-2.8.1/etc/hadoop/core-site.xml /hadoop/hadoop-2.8.1/etc/ha
 ADD ./hadoop-conf /hadoop/hadoop-2.8.1/etc/hadoop
 ADD ./run.sh /hadoop/hadoop-2.8.1/run.sh
 RUN chmod 777 /hadoop/hadoop-2.8.1/run.sh
+RUN rm -rf /hadoop/hadoop-2.8.1/datanode
 RUN mkdir /hadoop/hadoop-2.8.1/datanode
 RUN mkdir /hadoop/hadoop-2.8.1/namenode
 
