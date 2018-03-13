@@ -5,6 +5,7 @@ import org.apache.spark.streaming.Durations;
 import org.apache.spark.streaming.api.java.JavaDStream;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
 
+import java.io.IOException;
 import java.util.Collections;
 
 /**
@@ -16,6 +17,15 @@ public class Main {
         SparkConf sparkConf = new SparkConf().setAppName("loganalyzer");
         JavaStreamingContext javaStreamingContext = new JavaStreamingContext(sparkConf, Durations.seconds(5));
         JavaDStream<String> logData = javaStreamingContext.textFileStream(input);
-        logData.flatMap(line -> Collections.singleton(ApacheAccessLog.parseFromLogLine(line)).iterator());
+        //logData.flatMap(line -> Collections.singleton(ApacheAccessLog.parseFromLogLine(line)).iterator());
+        JavaDStream<ApacheAccessLog> accessLogsDStream = logData.flatMap(
+                line -> {
+                    try {
+                        return Collections.singleton(ApacheAccessLog.parseFromLogLine(line)).iterator();
+                    } catch (IOException e) {
+                        return Collections.emptyIterator();
+                    }
+                }
+        ).cache();
     }
 }
