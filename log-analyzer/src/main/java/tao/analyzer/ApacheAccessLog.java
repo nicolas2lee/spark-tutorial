@@ -132,4 +132,19 @@ public class ApacheAccessLog implements Serializable {
     return new ApacheAccessLog(m.group(1), m.group(2), m.group(3), m.group(4),
         m.group(5), m.group(6), m.group(7), m.group(8), m.group(9));
   }
+
+  @Override
+  public String toString() {
+    return "ApacheAccessLog{" +
+            "ipAddress='" + ipAddress + '\'' +
+            ", clientIdentd='" + clientIdentd + '\'' +
+            ", userID='" + userID + '\'' +
+            ", dateTimeString='" + dateTimeString + '\'' +
+            ", method='" + method + '\'' +
+            ", endpoint='" + endpoint + '\'' +
+            ", protocol='" + protocol + '\'' +
+            ", responseCode=" + responseCode +
+            ", contentSize=" + contentSize +
+            '}';
+  }
 }

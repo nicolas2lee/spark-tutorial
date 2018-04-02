@@ -1,0 +1,8 @@
+bin/spark-submit --class tao.analyzer.MainBatch \
+--deploy-mode client \
+--master spark://spark-master:7077 \
+--conf spark.driver.cores=4 \
+--conf spark.eventLog.enabled=true \
+--total-executor-cores 10 \
+spark-app/log-analyzer-1.0-SNAPSHOT.jar hdfs://hadoop-namenode:9000/app/loganalyzer/input \
+8

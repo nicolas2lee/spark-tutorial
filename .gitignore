@@ -3,3 +3,5 @@
 .idea
 
 docker/hadoop/hadoop-container-buildh/hadoop-binary/**
+spark-container-build/spark-app/
+spark-container-build/test.txt

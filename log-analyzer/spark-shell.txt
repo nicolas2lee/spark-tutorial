@@ -1,0 +1,4 @@
+val textFile = sc.textFile("hdfs://hadoop-namenode:9000/app/loganalyzer/input")
+
+
+textFile.count()
